@@ -1,11 +1,8 @@
 <?php
-// Veritabanı bağlantısı ve diğer gerekli dosyaları dahil edin
-include 'db.php';
 
-// Oturumu başlatın
+include 'db.php';
 session_start();
 
-// Ana içerik alanı
 ?>
 
 <?php include 'header.php'; ?>
@@ -14,14 +11,13 @@ session_start();
     <h1>Hoş Geldiniz!</h1>
     <p>Blogumuza hoş geldiniz. Burada en son blog yazılarını bulabilirsiniz.</p>
 
-    <!-- Blog yazılarını listeleme -->
+    <!-- Blog yazılarını listelediğimiz bölüm -->
     <div class="row">
         <?php
-        // Veritabanından en son 5 blog yazısını alın
+        // Veritabanından en son 5 blogu çekip listeliyoruz.
         $query = "SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 5";
         $result = mysqli_query($conn, $query);
 
-        // Sonuçları döngüyle gösterme
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<div class="col-md-6">';
             echo '<div class="card mb-4">';
@@ -37,7 +33,4 @@ session_start();
     </div>
 </div>
 
-<?php
-// Footer dosyasını dahil etme
-include 'footer.php';
-?>
+<?php include 'footer.php'; ?>
