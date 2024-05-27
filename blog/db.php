@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost"; // Veritabanı sunucusunun adı
-$username = "dbusr21360859031"; // Veritabanı kullanıcı adı
-$password = "e9aOYEkHrDX6"; // Veritabanı şifresi
-$database = "dbstorage21360859031"; // Kullanılacak veritabanının adı
+$username = "your_username"; // Veritabanı kullanıcı adı
+$password = "your_password"; // Veritabanı şifresi
+$database = "your_database"; // Kullanılacak veritabanının adı
 
 $conn = new mysqli($servername,$username,$password,$database);
 
