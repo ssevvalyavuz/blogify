@@ -2,7 +2,6 @@
 session_start();
 include 'db.php';
 
-// Kullanıcı giriş yapmış mı kontrol et
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -11,9 +10,8 @@ if (!isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = $_POST['title'];
     $content = $_POST['content'];
-    $author = $_SESSION['username']; // Kullanıcı adını oturumdan al
+    $author = $_SESSION['username'];
 
-    // Blog yazısını veritabanına ekle
     $query = "INSERT INTO blog_posts (title, content, author) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sss", $title, $content, $author);
