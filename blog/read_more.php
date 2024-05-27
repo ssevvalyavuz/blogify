@@ -1,12 +1,11 @@
 <?php
 include 'header.php';
-include 'db.php'; // Veritabanı bağlantısını dahil edin
+include 'db.php';
 
-// URL'den gelen blog yazısı ID'sini alın
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $post_id = $_GET['id'];
 
-    // Veritabanından ilgili blog yazısını alın
+    // Veritabanından blog yazısını çekiyoruz.
     $query = "SELECT * FROM blog_posts WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $post_id);
