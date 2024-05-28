@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Oturumun açık kalma süresini belirliyoruz
 $session_duration = 3600;
 ini_set('session.gc_maxlifetime', $session_duration);
 session_set_cookie_params($session_duration);
