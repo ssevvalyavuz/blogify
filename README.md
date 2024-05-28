@@ -1,5 +1,6 @@
 # Blogify
 Blogify php ile tasarlanmış bir blog sitesidir.
+[Blogify sitesine ulaşmak için buraya tıklayabilirsiniz.](http://95.130.171.20/~st21360859031/)
 
 ### Kodların MAC_OS XAMPP üzerinde çalıştırılması
 1. Önce XAMPP ı bilgisayarınıza kurun. [Buradan indirebilirsiniz.](https://www.apachefriends.org/ "Buradan indirebilirsiniz.")
