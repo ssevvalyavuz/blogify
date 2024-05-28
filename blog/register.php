@@ -1,22 +1,23 @@
 <?php
-
+// Hata raporlamasını aç
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Veritabanı bağlantısını dahil et
 include 'db.php';
 include 'header.php';
 
-// Kayıt ol tuşuna basılınca çalışacak yer
+// Form gönderildiğinde
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Girilen bilgileri çekiyoruz
+    // Form verilerini al
     $fullName = $_POST['fullName'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Veritabanına kullanıcıyı kayıt ediyoruz.
+    // Veritabanına kaydetme işlemini gerçekleştir
     $query = "INSERT INTO users (fullName, username, email, phone, password) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     if ($stmt === false) {
@@ -26,8 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Kayıt başarıyla oluşturuldu.";
-        header("Location: login.php"); 
-        exit;
+        // Kayıt işlemi başarılı olduğunda kullanıcıyı yönlendirme yapabilirsiniz.
+        header("Location: login.php"); // Örneğin, kayıt işlemi tamamlandığında kullanıcıyı giriş sayfasına yönlendirir.
+        exit; // Yönlendirme yaptıktan sonra betik çalışmasını sonlandırır.
     } else {
         echo "Hata: " . $stmt->error;
     }

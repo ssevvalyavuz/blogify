@@ -17,7 +17,7 @@
       <li class="nav-item"><a class="nav-link" href="index.php">Anasayfa</a></li>
       <?php if(isset($_SESSION['username'])): ?>
           <li class="nav-item"><a class="nav-link" href="write_blog.php">Blog Yaz</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><?= $_SESSION['username']; ?></a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.php"><?= $_SESSION['username']; ?></a></li>
           <li class="nav-item"><a class="nav-link" href="logout.php">Çıkış Yap</a></li>
       <?php else: ?>
           <li class="nav-item"><a class="nav-link" href="login.php">Giriş Yap</a></li>

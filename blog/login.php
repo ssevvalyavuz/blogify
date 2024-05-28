@@ -1,40 +1,44 @@
 <?php
+// Veritabanı bağlantısı ve diğer gerekli dosyaları dahil edin
 include 'db.php';
+
+// Oturumu başlatın
 session_start();
 
-// Form gönderildiğinde çalışacak bölüm burası
+// Form gönderildiğinde
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Forma girilen kullanıcı adı ve şifreyi alıyoruz
+    // Kullanıcı adı ve şifreyi alın
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Girilen bilgilerin doğruluğunu kontrol etmek için veritabanına sorgu yolluyoruz
+    // Kullanıcıyı doğrulamak için veritabanını sorgulayın
     $query = "SELECT id, username, password FROM users WHERE username = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
 
+    // Sonuçları alın
     $stmt->bind_result($user_id, $username, $stored_password);
     
-    // Eğer kullanıcı bilgileri doğruysa bu kısım çalışacak
+    // Eğer kullanıcı bulunduysa
     if ($stmt->fetch()) {
-        // Veritabanındaki hashlenmiş şifreyi karşılaştırıyoruz
+        // Veritabanında saklanan hashlenmiş şifreyi kullanarak doğrulama yapın
         if (password_verify($password, $stored_password)) {
-            // Bilgiler doğrulandı
-            // Kullanıcı bilgilerini oturuma dahil ediyoruz
+            // Kullanıcı doğrulandı
+            // Kullanıcı bilgilerini oturumda sakla
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $username;
 
-            // Giriş yaptıktan sonra anasayfaya atıyoruz
+            // Giriş başarılı olduğunda kullanıcıyı yönlendirin
             header("Location: index.php");
             exit;
         } else {
-            // Hatalı bilgi girdiyse
+            // Şifre yanlış
             $error = "Kullanıcı adı veya şifre hatalı.";
         }
     } else {
-        // Hatalı bilgi girdiyse
+        // Kullanıcı bulunamadı
         $error = "Kullanıcı adı veya şifre hatalı.";
     }
 }
