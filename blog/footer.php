@@ -12,6 +12,9 @@
 
       <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
         <h5 class="text-uppercase">Sosyal Medya</h5>
+        <a href="https://github.com/ssevvalyavuz/blogify" class="btn btn-primary btn-lg btn-block" style="background-color: #000000;" role="button">
+          GitHub
+        </a>
         <a href="#" class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998;" role="button">
           Facebook
         </a>
